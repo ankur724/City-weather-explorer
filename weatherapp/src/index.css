@@ -1,0 +1,141 @@
+*{margin: 0;
+padding: 0;}
+body {
+  padding: 14px;
+  text-align: center;
+}
+
+table {
+  border-radius: 10px;
+  width: 100%;
+  margin: 20px auto;
+  table-layout: auto;
+}
+
+.fixed {
+  table-layout: fixed;
+}
+
+table,
+td,
+th {
+  border-collapse: collapse;
+
+}
+th{
+  background-color: black;
+    color: white;
+}
+
+th,
+td {
+
+  padding: 10px;
+  border: solid 1px;
+  text-align: center;
+}
+
+.w {
+  width: 400px;
+}
+.box ul{
+  margin: 0.5rem;
+  width: 250px;
+  height: 100px;
+  box-shadow: 0px 0px 8px #ddd;
+  border-radius: 10px;
+  background-color: white;
+  list-style-type: none;
+  position: absolute;
+}
+.box a{
+
+  text-decoration: none;
+  /* color: blue; */
+  /* padding: 1.2rem; */
+  color: blue;
+}
+.box input{
+  height: 45px;
+  width: 250px;
+  padding: 0.5rem;
+  color: black;
+  background-color: white;
+  display: flex;
+  justify-content: flex-end; 
+  align-items: center;
+  box-shadow: 0px 0px 8px #ddd;
+  border-radius: 10px;
+  margin-top: 1rem;
+  margin-right: 1rem;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.container{
+
+color: white;
+width: 350px;
+/* display: flex; */
+/* align-items: center; */
+/* justify-content: center; */
+height: 350px; 
+border-radius: 15px;
+background-color: black;
+z-index:  -1;
+position: relative;
+}
+
+
+
+
+/* weather  */
+
+.temp{
+  position: relative;
+  /* left: -100px; */
+  font-size: larger;
+  padding: 1rem;
+  display: flex;
+
+}
+.tempicon{ position: relative;
+  left: 51px;
+  top: -33px;
+}
+.desc{
+  text-transform: capitalize;
+  font-size: larger;
+  padding: 1rem;
+  position: relative;
+/* top:15px; */
+  display: flex;
+}
+.info{
+  width:350px;
+  height: 295px;
+  border-radius: 15px;
+  background-color: #01579b;
+}
+
+
+.wind{
+
+  font-size: larger;
+  padding: 1rem;
+  display: flex;
+}
+
+.humi{
+  
+  font-size: larger;
+  padding: 1rem;
+  display: flex;
+}
+.pressure
+{
+ 
+  font-size: larger;
+  padding: 1rem;
+  display: flex;
+}
