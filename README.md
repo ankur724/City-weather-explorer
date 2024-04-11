@@ -1,5 +1,6 @@
 City Weather Explorer is a web application that allows users to explore cities around the world in a convenient and interactive way. Users can view a table displaying various cities with their respective information such as city name, country, timezone, and more. Additionally, users can search for specific cities with an autocomplete feature, and upon selecting a city, they can view detailed weather information for that city.
-
+Video Demo
+Click here to watch the video demo ([ Check Video link here)](https://drive.google.com/file/d/1y_bs5B42gnt9U_P63Wb9Wi4FHD4BjDhZ/view?usp=sharing)
 Features
 Display cities in a table format with infinite scroll.
 Show city information including city name, country, timezone, etc.
