@@ -19,4 +19,4 @@ Current weather: temperature, weather description, humidity, wind speed, atmosph
 Weather information is retrieved using the OpenWeatherMap free API.
 
 Video Demo
-Click here to watch the video demo ([Add your video link here)](https://drive.google.com/file/d/1y_bs5B42gnt9U_P63Wb9Wi4FHD4BjDhZ/view?usp=sharing)
+Click here to watch the video demo ([ Check Video link here)](https://drive.google.com/file/d/1y_bs5B42gnt9U_P63Wb9Wi4FHD4BjDhZ/view?usp=sharing)
