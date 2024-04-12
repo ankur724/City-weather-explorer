@@ -2,9 +2,22 @@ import  { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Autosuggest from 'react-autosuggest';
-
+interface City {
+  name: string;
+  population: number;
+}
+interface City {
+  recordid: string;
+  fields: {
+    timezone: string;
+    name: string;
+    cou_name_en: string;
+  };
+}
 const CityTable = () => {
-  const [cities, setCities] = useState([]);
+  // const [cities, setCities] = useState([]);
+  const [cities, setCities] = useState<City[]>([]);
+
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
@@ -22,48 +35,46 @@ const CityTable = () => {
       }
       setLoading(false);
     };
-
+    
     fetchCities();
+    
   }, [page, searchTerm]);
+  
 
-
-
-  const handleScroll = (event) => {
+  const handleScroll = (event: React.UIEvent<HTMLDivElement>) => {
     const { scrollTop, clientHeight, scrollHeight } = event.currentTarget;
     if (scrollHeight - scrollTop === clientHeight) {
-      setPage(prevPage => prevPage + 1);
+      setPage((prevPage: number) => prevPage + 1);
     }
   };
 
-  const handleSearchChange = (event, { newValue }) => {
-    
-
-      setSearchTerm(newValue);
-    
+  const handleSearchChange = (_event: React.ChangeEvent<HTMLInputElement>, { newValue }: { newValue: string }) => {
+    setSearchTerm(newValue);
   };
 
-  const onSuggestionsFetchRequested = async ({ value }) => {
-    try {
-      const response = await axios.get(`https://public.opendatasoft.com/api/records/1.0/search/?dataset=geonames-all-cities-with-a-population-1000&q=${value}&rows=5`);
-      setSuggestions(response.data.records.map(record => record.fields.name));
-    } catch (error) {
-      console.error('Error fetching suggestions:', error);
-    }
-  };
+  const onSuggestionsFetchRequested = async ({ value }: { value: string }) => {
+  try {
+    const response = await axios.get<{ records: { fields: { name: string } }[] }>(`https://public.opendatasoft.com/api/records/1.0/search/?dataset=geonames-all-cities-with-a-population-1000&q=${value}&rows=5`);
+    // Using a type assertion to inform TypeScript that response.data.records.map(...) returns an array of strings
+    setSuggestions(response.data.records.map((record) => record.fields.name) as string[]);
+  } catch (error) {
+    console.error('Error fetching suggestions:', error);
+  }
+};
 
   const onSuggestionsClearRequested = () => {
     setSuggestions([]);
   };
 
-  const getSuggestionValue = suggestion => suggestion;
+  const getSuggestionValue = (suggestion: string) => suggestion;
 
-  const renderSuggestion = suggestion => (
+  const renderSuggestion = (suggestion: string) => (
     <div>
       <Link to={`/weather/${encodeURIComponent(suggestion)}`} target="_blank">{suggestion}</Link>
     </div>
   );
 
-  const handleRightClick = (event, suggestion) => {
+  const handleRightClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>, suggestion: string) => {
     event.preventDefault();
     window.open(`/weather/${encodeURIComponent(suggestion)}`, '_blank');
   };
@@ -73,12 +84,11 @@ const CityTable = () => {
     value: searchTerm,
     onChange: handleSearchChange
   };
-return (
-    
+
+  return (
     <div className='box'>
       <h1>CityWeatherExplorer</h1>
-      <br>
-      </br>
+      <br />
       <h4>Search and Click on City name to Get Weather Information</h4>
       <Autosuggest
         suggestions={suggestions}
@@ -92,7 +102,6 @@ return (
       <div style={{ maxHeight: '500px', overflowY: 'scroll' }} onScroll={handleScroll}>
         <table>
           <thead>
-        
             <tr>
               <th>Timezone</th>
               <th>City Name</th>
@@ -107,8 +116,8 @@ return (
                   <Link
                     to={`/weather/${encodeURIComponent(city.fields.name)}`}
                     target="_blank"
-                    onClick={(e) => handleRightClick(e, city.fields.name)} // Code for Right-click handler
-                    onContextMenu={(e) => handleRightClick(e, city.fields.name)} 
+                    onClick={(e) => handleRightClick(e, city.fields.name)}
+                    onContextMenu={(e) => handleRightClick(e, city.fields.name)}
                   >
                     {city.fields.name}
                   </Link>
